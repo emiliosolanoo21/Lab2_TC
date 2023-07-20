@@ -1,0 +1,3 @@
+/home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles/MiProyecto.dir
+/home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles/edit_cache.dir
+/home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles/rebuild_cache.dir
