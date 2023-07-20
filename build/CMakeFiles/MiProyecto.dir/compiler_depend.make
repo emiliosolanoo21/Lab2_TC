@@ -3,7 +3,7 @@
 
 CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/main.cpp \
   /usr/include/stdc-predef.h \
-  /usr/include/c++/13.1.1/iostream \
+  /usr/include/c++/13.1.1/fstream \
   /usr/include/c++/13.1.1/bits/requires_hosted.h \
   /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
   /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -17,7 +17,7 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
   /usr/include/gnu/stubs-64.h \
   /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
   /usr/include/c++/13.1.1/pstl/pstl_config.h \
-  /usr/include/c++/13.1.1/ostream \
+  /usr/include/c++/13.1.1/istream \
   /usr/include/c++/13.1.1/ios \
   /usr/include/c++/13.1.1/iosfwd \
   /usr/include/c++/13.1.1/bits/stringfwd.h \
@@ -184,9 +184,14 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
   /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
   /usr/include/c++/13.1.1/bits/locale_facets.tcc \
   /usr/include/c++/13.1.1/bits/basic_ios.tcc \
+  /usr/include/c++/13.1.1/ostream \
   /usr/include/c++/13.1.1/bits/ostream.tcc \
-  /usr/include/c++/13.1.1/istream \
   /usr/include/c++/13.1.1/bits/istream.tcc \
+  /usr/include/c++/13.1.1/bits/codecvt.h \
+  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
+  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
+  /usr/include/c++/13.1.1/bits/fstream.tcc \
+  /usr/include/c++/13.1.1/iostream \
   /usr/include/c++/13.1.1/stack \
   /usr/include/c++/13.1.1/deque \
   /usr/include/c++/13.1.1/bits/stl_uninitialized.h \
@@ -201,9 +206,11 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 
 /usr/include/c++/13.1.1/deque:
 
-/usr/include/c++/13.1.1/bits/istream.tcc:
+/usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/basic_file.h:
 
-/usr/include/c++/13.1.1/istream:
+/usr/include/c++/13.1.1/bits/codecvt.h:
+
+/usr/include/c++/13.1.1/bits/istream.tcc:
 
 /usr/include/c++/13.1.1/bits/ostream.tcc:
 
@@ -281,6 +288,10 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 
 /usr/include/bits/time64.h:
 
+/usr/include/bits/cpu-set.h:
+
+/usr/include/c++/13.1.1/ext/numeric_traits.h:
+
 /usr/include/bits/types.h:
 
 /usr/include/c++/13.1.1/bits/localefwd.h:
@@ -305,9 +316,23 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 
 /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++locale.h:
 
+/usr/include/c++/13.1.1/bits/basic_ios.tcc:
+
+/usr/include/bits/typesizes.h:
+
+/usr/include/c++/13.1.1/bits/exception_ptr.h:
+
 /usr/include/c++/13.1.1/exception:
 
+/usr/include/c++/13.1.1/iostream:
+
+/usr/include/bits/types/FILE.h:
+
 /usr/include/bits/types/__FILE.h:
+
+/usr/include/c++/13.1.1/ostream:
+
+/usr/include/c++/13.1.1/bits/memoryfwd.h:
 
 /usr/include/bits/types/locale_t.h:
 
@@ -343,31 +368,23 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 
 /usr/include/c++/13.1.1/bits/exception.h:
 
+/usr/include/c++/13.1.1/istream:
+
 /usr/include/bits/types/struct_timespec.h:
-
-/usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h:
-
-/usr/include/bits/types/FILE.h:
-
-/usr/include/c++/13.1.1/iostream:
-
-/usr/include/c++/13.1.1/bits/nested_exception.h:
-
-/usr/include/c++/13.1.1/bits/requires_hosted.h:
 
 /usr/include/c++/13.1.1/bits/char_traits.h:
 
 /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/os_defines.h:
 
-/usr/include/c++/13.1.1/bits/basic_ios.tcc:
+/usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++io.h:
 
-/usr/include/c++/13.1.1/bits/exception_ptr.h:
+/usr/include/c++/13.1.1/bits/nested_exception.h:
 
-/usr/include/bits/typesizes.h:
+/usr/include/c++/13.1.1/bits/requires_hosted.h:
 
-/usr/include/bits/cpu-set.h:
+/usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h:
 
-/usr/include/c++/13.1.1/ext/numeric_traits.h:
+/usr/include/c++/13.1.1/fstream:
 
 /usr/include/sys/cdefs.h:
 
@@ -386,12 +403,6 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 /usr/include/wchar.h:
 
 /usr/include/c++/13.1.1/bits/stringfwd.h:
-
-/usr/include/c++/13.1.1/bits/memoryfwd.h:
-
-/usr/include/c++/13.1.1/ostream:
-
-/usr/include/bits/atomic_wide_counter.h:
 
 /usr/include/c++/13.1.1/bits/hash_bytes.h:
 
@@ -413,6 +424,12 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 
 /usr/include/bits/floatn-common.h:
 
+/usr/include/c++/13.1.1/bits/basic_string.tcc:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include/stdarg.h:
+
+/usr/include/bits/libc-header-start.h:
+
 /usr/include/c++/13.1.1/clocale:
 
 /usr/include/c++/13.1.1/bits/stl_pair.h:
@@ -420,12 +437,6 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 /usr/include/c++/13.1.1/bits/cxxabi_init_exception.h:
 
 /usr/include/bits/floatn.h:
-
-/usr/include/c++/13.1.1/bits/basic_string.tcc:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include/stdarg.h:
-
-/usr/include/bits/libc-header-start.h:
 
 /usr/include/features.h:
 
@@ -450,12 +461,6 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 /usr/include/pthread.h:
 
 /usr/include/bits/sched.h:
-
-/usr/include/c++/13.1.1/pstl/pstl_config.h:
-
-/usr/include/bits/types/clockid_t.h:
-
-/usr/include/c++/13.1.1/bits/ostream_insert.h:
 
 /usr/include/bits/types/struct_sched_param.h:
 
@@ -484,6 +489,16 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: /home/danval/proyects_teorComp/Lab2_TC/mai
 /usr/include/c++/13.1.1/bits/exception_defines.h:
 
 /usr/include/bits/types/clock_t.h:
+
+/usr/include/c++/13.1.1/pstl/pstl_config.h:
+
+/usr/include/c++/13.1.1/bits/ostream_insert.h:
+
+/usr/include/bits/types/clockid_t.h:
+
+/usr/include/c++/13.1.1/bits/fstream.tcc:
+
+/usr/include/bits/atomic_wide_counter.h:
 
 /usr/include/bits/struct_rwlock.h:
 

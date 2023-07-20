@@ -4,7 +4,7 @@
 CMakeFiles/MiProyecto.dir/main.cpp.o
  /home/danval/proyects_teorComp/Lab2_TC/main.cpp
  /usr/include/stdc-predef.h
- /usr/include/c++/13.1.1/iostream
+ /usr/include/c++/13.1.1/fstream
  /usr/include/c++/13.1.1/bits/requires_hosted.h
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/os_defines.h
@@ -18,7 +18,7 @@ CMakeFiles/MiProyecto.dir/main.cpp.o
  /usr/include/gnu/stubs-64.h
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h
  /usr/include/c++/13.1.1/pstl/pstl_config.h
- /usr/include/c++/13.1.1/ostream
+ /usr/include/c++/13.1.1/istream
  /usr/include/c++/13.1.1/ios
  /usr/include/c++/13.1.1/iosfwd
  /usr/include/c++/13.1.1/bits/stringfwd.h
@@ -185,9 +185,14 @@ CMakeFiles/MiProyecto.dir/main.cpp.o
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h
  /usr/include/c++/13.1.1/bits/locale_facets.tcc
  /usr/include/c++/13.1.1/bits/basic_ios.tcc
+ /usr/include/c++/13.1.1/ostream
  /usr/include/c++/13.1.1/bits/ostream.tcc
- /usr/include/c++/13.1.1/istream
  /usr/include/c++/13.1.1/bits/istream.tcc
+ /usr/include/c++/13.1.1/bits/codecvt.h
+ /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/basic_file.h
+ /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++io.h
+ /usr/include/c++/13.1.1/bits/fstream.tcc
+ /usr/include/c++/13.1.1/iostream
  /usr/include/c++/13.1.1/stack
  /usr/include/c++/13.1.1/deque
  /usr/include/c++/13.1.1/bits/stl_uninitialized.h
