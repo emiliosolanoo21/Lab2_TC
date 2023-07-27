@@ -1,0 +1,3 @@
+/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles/MiProyecto.dir
+/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles/edit_cache.dir
+/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles/rebuild_cache.dir

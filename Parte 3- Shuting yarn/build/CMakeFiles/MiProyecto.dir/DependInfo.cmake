@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/danval/proyects_teorComp/Lab2_TC/main.cpp" "CMakeFiles/MiProyecto.dir/main.cpp.o" "gcc" "CMakeFiles/MiProyecto.dir/main.cpp.o.d"
+  "/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/main.cpp" "CMakeFiles/MiProyecto.dir/main.cpp.o" "gcc" "CMakeFiles/MiProyecto.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

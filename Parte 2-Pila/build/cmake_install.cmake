@@ -1,4 +1,4 @@
-# Install script for directory: /home/danval/proyects_teorComp/Lab2_TC
+# Install script for directory: /home/danval/proyects_teorComp/Lab2_TC/Parte 2-Pila
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/danval/proyects_teorComp/Lab2_TC/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/danval/proyects_teorComp/Lab2_TC/Parte 2-Pila/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

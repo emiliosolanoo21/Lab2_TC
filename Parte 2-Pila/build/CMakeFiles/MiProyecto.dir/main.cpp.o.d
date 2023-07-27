@@ -1,5 +1,5 @@
 CMakeFiles/MiProyecto.dir/main.cpp.o: \
- /home/danval/proyects_teorComp/Lab2_TC/main.cpp \
+ /home/danval/proyects_teorComp/Lab2_TC/Parte\ 2-Pila/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/13.1.1/fstream \
  /usr/include/c++/13.1.1/bits/requires_hosted.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h \

@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/danval/proyects_teorComp/Lab2_TC
+CMAKE_SOURCE_DIR = "/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/danval/proyects_teorComp/Lab2_TC/build
+CMAKE_BINARY_DIR = "/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build"
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +81,14 @@ clean: CMakeFiles/MiProyecto.dir/clean
 CMakeFiles/MiProyecto.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MiProyecto.dir/build.make CMakeFiles/MiProyecto.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MiProyecto.dir/build.make CMakeFiles/MiProyecto.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles --progress-num=1,2 "Built target MiProyecto"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles" --progress-num=1,2 "Built target MiProyecto"
 .PHONY : CMakeFiles/MiProyecto.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/MiProyecto.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/MiProyecto.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/danval/proyects_teorComp/Lab2_TC/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/danval/proyects_teorComp/Lab2_TC/Parte 3- Shuting yarn/build/CMakeFiles" 0
 .PHONY : CMakeFiles/MiProyecto.dir/rule
 
 # Convenience name for target.
