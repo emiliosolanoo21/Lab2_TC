@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/MiProyecto.dir/main.cpp.o -o MiProyecto 
+/usr/bin/c++ CMakeFiles/MiProyecto.dir/main.cpp.o -o MiProyecto 

@@ -1,5 +1,5 @@
 # Establecer la versión mínima de CMake requerida
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.7)
 
 # Definir el nombre del proyecto y el lenguaje utilizado
 project(MiProyecto CXX)

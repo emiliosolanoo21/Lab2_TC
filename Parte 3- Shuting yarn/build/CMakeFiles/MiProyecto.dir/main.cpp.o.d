@@ -1,6 +1,6 @@
 CMakeFiles/MiProyecto.dir/main.cpp.o: \
  /home/danval/proyects_teorComp/Lab2_TC/Parte\ 3-\ Shuting\ yarn/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/13.1.1/fstream \
+ /usr/include/stdc-predef.h /usr/include/c++/13.1.1/iostream \
  /usr/include/c++/13.1.1/bits/requires_hosted.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++config.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/os_defines.h \
@@ -10,7 +10,7 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
  /usr/include/c++/13.1.1/pstl/pstl_config.h \
- /usr/include/c++/13.1.1/istream /usr/include/c++/13.1.1/ios \
+ /usr/include/c++/13.1.1/ostream /usr/include/c++/13.1.1/ios \
  /usr/include/c++/13.1.1/iosfwd /usr/include/c++/13.1.1/bits/stringfwd.h \
  /usr/include/c++/13.1.1/bits/memoryfwd.h \
  /usr/include/c++/13.1.1/bits/postypes.h /usr/include/c++/13.1.1/cwchar \
@@ -134,15 +134,55 @@ CMakeFiles/MiProyecto.dir/main.cpp.o: \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/ctype_inline.h \
  /usr/include/c++/13.1.1/bits/locale_facets.tcc \
  /usr/include/c++/13.1.1/bits/basic_ios.tcc \
- /usr/include/c++/13.1.1/ostream /usr/include/c++/13.1.1/bits/ostream.tcc \
- /usr/include/c++/13.1.1/bits/istream.tcc \
+ /usr/include/c++/13.1.1/bits/ostream.tcc /usr/include/c++/13.1.1/istream \
+ /usr/include/c++/13.1.1/bits/istream.tcc /usr/include/c++/13.1.1/fstream \
  /usr/include/c++/13.1.1/bits/codecvt.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/basic_file.h \
  /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/c++io.h \
- /usr/include/c++/13.1.1/bits/fstream.tcc \
- /usr/include/c++/13.1.1/iostream /usr/include/c++/13.1.1/stack \
+ /usr/include/c++/13.1.1/bits/fstream.tcc /usr/include/c++/13.1.1/stack \
  /usr/include/c++/13.1.1/deque \
  /usr/include/c++/13.1.1/bits/stl_uninitialized.h \
  /usr/include/c++/13.1.1/bits/stl_deque.h \
  /usr/include/c++/13.1.1/bits/deque.tcc \
- /usr/include/c++/13.1.1/bits/stl_stack.h
+ /usr/include/c++/13.1.1/bits/stl_stack.h /usr/include/c++/13.1.1/map \
+ /usr/include/c++/13.1.1/bits/stl_tree.h \
+ /usr/include/c++/13.1.1/ext/aligned_buffer.h \
+ /usr/include/c++/13.1.1/bits/node_handle.h \
+ /usr/include/c++/13.1.1/bits/stl_map.h \
+ /usr/include/c++/13.1.1/bits/stl_multimap.h \
+ /usr/include/c++/13.1.1/bits/erase_if.h /usr/include/c++/13.1.1/regex \
+ /usr/include/c++/13.1.1/bitset /usr/include/c++/13.1.1/locale \
+ /usr/include/c++/13.1.1/bits/locale_facets_nonio.h \
+ /usr/include/c++/13.1.1/ctime \
+ /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/time_members.h \
+ /usr/include/c++/13.1.1/x86_64-pc-linux-gnu/bits/messages_members.h \
+ /usr/include/libintl.h \
+ /usr/include/c++/13.1.1/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/13.1.1/bits/locale_conv.h \
+ /usr/include/c++/13.1.1/sstream /usr/include/c++/13.1.1/bits/sstream.tcc \
+ /usr/include/c++/13.1.1/bits/shared_ptr.h \
+ /usr/include/c++/13.1.1/bits/shared_ptr_base.h \
+ /usr/include/c++/13.1.1/bits/allocated_ptr.h \
+ /usr/include/c++/13.1.1/bits/unique_ptr.h \
+ /usr/include/c++/13.1.1/ext/concurrence.h \
+ /usr/include/c++/13.1.1/bits/std_function.h \
+ /usr/include/c++/13.1.1/bits/stl_algo.h \
+ /usr/include/c++/13.1.1/bits/algorithmfwd.h \
+ /usr/include/c++/13.1.1/bits/stl_heap.h \
+ /usr/include/c++/13.1.1/bits/uniform_int_dist.h \
+ /usr/include/c++/13.1.1/bits/stl_tempbuf.h \
+ /usr/include/c++/13.1.1/bits/stl_vector.h \
+ /usr/include/c++/13.1.1/bits/stl_bvector.h \
+ /usr/include/c++/13.1.1/bits/vector.tcc \
+ /usr/include/c++/13.1.1/bits/regex_constants.h \
+ /usr/include/c++/13.1.1/bits/regex_error.h \
+ /usr/include/c++/13.1.1/bits/regex_automaton.h \
+ /usr/include/c++/13.1.1/bits/regex_automaton.tcc \
+ /usr/include/c++/13.1.1/bits/regex_scanner.h \
+ /usr/include/c++/13.1.1/bits/regex_scanner.tcc \
+ /usr/include/c++/13.1.1/bits/regex_compiler.h \
+ /usr/include/c++/13.1.1/bits/regex_compiler.tcc \
+ /usr/include/c++/13.1.1/bits/regex.h \
+ /usr/include/c++/13.1.1/bits/regex.tcc \
+ /usr/include/c++/13.1.1/bits/regex_executor.h \
+ /usr/include/c++/13.1.1/bits/regex_executor.tcc

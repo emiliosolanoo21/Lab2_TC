@@ -1,14 +1,16 @@
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <stack>
 #include <map>
 #include <string>
+#include <regex>
 
 using namespace std;
 
 // Función para determinar si un token es un operador
 bool isOperator(const char& token) {
-    static const string operators = "|?+*^";
+
+    static const string operators = "|?.+*^";
     return operators.find(token) != string::npos;
 }
 
@@ -18,82 +20,120 @@ bool isBinary(const char& token) {
 }
 
 // Función para asignar prioridades a los operadores
+// Función para asignar prioridades a los operadores
 int precedence(const char& op) {
     static const map<char, int> prec = {
-        {'(', 1}, {'|', 2}, {'.', 3}, {'?', 4}, {'*', 4}, {'+', 4}, {'^', 5}
+        {'(', 1}, {')', 1}, {'|', 2}, {'.', 3}, {'?', 4}, {'*', 4}, {'+', 4}, {'^', 5}, {'∗', 4}
     };
-    return prec.at(op);
+    auto it = prec.find(op);
+    if (it != prec.end()) {
+        return it->second;
+    }
+    // Si el operador no se encuentra en el mapa, devolvemos una prioridad por defecto
+    return -1;
 }
-
-
-string formatRegEx(const string linea){
-
+// Formatear la expresión regular para incluir concatenaciones explícitas
+string formatRegEx(const string linea) {
     string resultado;
-
+    bool escaped = false;
     for (size_t i = 0; i < linea.length(); ++i) {
         char c1 = linea[i];
+        if (i + 1 < linea.length()) {
+            char c2 = linea[i + 1];
+            resultado += c1;
 
-        if(i + 1 < linea.length()){
-            char c2 = linea[i+1];
+            // Verificar si el caracter actual es '\' (carácter de escape)
+            if (c1 == '\\' && !escaped) {
+                resultado += c2; // Agregar el siguiente caracter sin formato
+                ++i; // Avanzar al siguiente caracter
+                escaped =true;
+                continue;
+            }
 
-            resultado+=c1;
-
-            if(
-                c1 != '(' && c2 != ')' && !isOperator(c2) && !isBinary(c1)
-            ){
-
-                resultado+='.';
+            if ((c1 != '(' && c2 != ')' && !isOperator(c2) && !isBinary(c1)) || escaped) {
+                resultado += '.';
+                escaped=false;
             }
         }
     }
-
-    resultado+=linea[linea.length()-1];
-
+    resultado += linea[linea.length() - 1];
     return resultado;
 }
 
-string infixToPostfix(string regex){
+void mostrarPila(const stack<char>& pila) {
+    // Creamos una pila auxiliar para almacenar temporalmente los elementos
+    stack<char> pilaAux = pila;
+    cout<< "Datos en la pila: [";
+    // Mostramos los elementos de la pila auxiliar
+    while (!pilaAux.empty()) {
+
+
+        cout << pilaAux.top();
+        pilaAux.pop();
+    }
+
+    cout<<"]"<< endl;
+}
+
+string infixToPostfix(string regex) {
     string postfix;
-
     stack<char> pilaPostfix;
-
+    bool escapeChar = false;
+    cout<<"Se convierte reformatea:"<<endl;
     string formattedRegEx = formatRegEx(regex);
+    cout<<"Expresion infix: "<<formattedRegEx<<endl;
 
-    for (char caracter: formattedRegEx){
+    for (char caracter : formattedRegEx) {
+        cout<<"caracter Evaluado: "<<caracter<<endl;
         switch (caracter) {
+            case '\\':
+                escapeChar =true;
+                break;
             case '(':
-                pilaPostfix.push(caracter);
-                break;
-            case ')':
-                while (pilaPostfix.top() != '(') {
-                    postfix+=pilaPostfix.top();
-                    pilaPostfix.pop();
+                if(!escapeChar){
+                    pilaPostfix.push(caracter);
+                    break;
                 }
-                pilaPostfix.pop();
-                break;
-            default:
-                while (pilaPostfix.size()>0) {
-                    char caracterTomado = pilaPostfix.top();
-                    int precedenciaCaracterTomado = precedence(caracterTomado);
-                    int precedenciaCaracterActual = precedence(caracter);
-
-
-                    if(precedenciaCaracterTomado >= precedenciaCaracterActual){
+            case ')':
+                if(!escapeChar){
+                    while (pilaPostfix.top() != '(') {
                         postfix += pilaPostfix.top();
                         pilaPostfix.pop();
-                    } else{
-                        break;
                     }
+                    pilaPostfix.pop(); // Eliminar el paréntesis izquierdo '(' de la pila
+                    break;
                 }
 
-                pilaPostfix.push(caracter);
+            default:
+                if((!isOperator(caracter) && !isBinary(caracter)) || escapeChar){
+                    escapeChar = false;
+                    postfix+=caracter;
+                }else {
+                    while (!pilaPostfix.empty()) {
+                        char caracterTomado = pilaPostfix.top();
+
+                        int precedenciaCaracterTomado = precedence(caracterTomado);
+                        int precedenciaCaracterActual = precedence(caracter);
+                        cout<<"Caracter Tomado: "<<caracterTomado<<" Caracter Actual: "<<caracter<<endl;
+                        if (precedenciaCaracterTomado >= precedenciaCaracterActual) {
+                            postfix += pilaPostfix.top();
+                            pilaPostfix.pop();
+                        } else {
+                            break;
+                        }
+                    }
+                    pilaPostfix.push(caracter);
+                }
+
+
                 break;
         }
-
+        cout<<"Cadena Postfix: "<<postfix<<endl;
+        mostrarPila(pilaPostfix);
     }
 
     while (!pilaPostfix.empty()) {
-        postfix+= pilaPostfix.top();
+        postfix += pilaPostfix.top();
         pilaPostfix.pop();
     }
 
@@ -101,76 +141,46 @@ string infixToPostfix(string regex){
 }
 
 
+string replaceUnicodeCharacters(const string& input) {
+    // Caracteres Unicode a reemplazar
+    map<string, string> unicodeMap = {
+        {"𝑎", "a"},
+        {"𝑏", "b"},
+        {"𝑐", "c"},
+        {"𝑑", "d"},
+        {"𝑒", "e"},
+        {"𝑓", "f"},
+        {"𝑔", "g"},
+        {"𝑎𝑧", "az"},
+        {"𝐴𝑍", "AZ"},
+        {"∗", "*"}, // Reemplazar el carácter unicode '∗' con '*'
+    };
+
+    string output = input;
+    for (const auto& entry : unicodeMap) {
+        regex pattern(entry.first);
+        output = regex_replace(output, pattern, entry.second);
+    }
+
+    return output;
+}
 
 int main() {
     ifstream archivo("../datos.txt");
-    stack<char> pila_regex;
-    bool test= true;
-
-
-
-
-
-
-    if (archivo.is_open()) {
-        string linea;
-        while (std::getline(archivo, linea)) {
-            cout<<">>Linea a evaluar: "<<linea<<endl;
-            for (char caracter : linea) {
-                cout<<caracter<<endl;
-                if(caracter=='('|| caracter == '[' || caracter =='{'){
-                    cout<< "Se mete a la pila"<<endl;
-                    pila_regex.push(caracter);
-                }else if (caracter==')'|| caracter == ']' || caracter =='}') {
-                    cout<< "Se evalua el ultimo caracter de la pila"<<endl;
-
-                    if(!pila_regex.empty()){
-                        if(contraParte(pila_regex.top())==caracter){
-                            cout<<endl;
-                            cout<<"o ¡Perfecto!, se hace pop de la pila o"<<endl;
-                            cout<<endl;
-                            pila_regex.pop();
-                        }else {
-                            cout<< "El caracter no coincide :("<< endl;
-                            test = false;
-                            break;
-                        }
-                    }else {
-                        cout<<"La pila ya estaba vacia :("<< endl;
-                        test =false;
-                        break;
-                    }
-                }
-
-                mostrarPila(pila_regex);
-
-            }
-            if(!pila_regex.empty()){
-                 cout<<endl;
-                 cout<<"*****Lastima, la expresion no esta balanceada. Ya que la pila no esta vacia.****"<< endl;
-                 while (!pila_regex.empty()) {
-                     pila_regex.pop();
-                 }
-                 cout<<endl;
-            } else if(!test){
-                cout<<endl;
-                 cout<<"*****Lastima, la expresion no esta balanceada.:(****"<< endl;
-                 while (!pila_regex.empty()) {
-                     pila_regex.pop();
-                 }
-                 cout<<endl;
-            }else {
-                cout<<endl;
-                cout<<"////La linea esta correctamente balanceada///"<<endl;
-                cout<<endl;
-            }
-            test = true;
-
-        }
-        archivo.close();
-    } else {
+    if (!archivo.is_open()) {
         cout << "Error al abrir el archivo." << endl;
+        return 1;
     }
 
+    string linea;
+    while (getline(archivo, linea)) {
+        linea = replaceUnicodeCharacters(linea);
+        cout << "Expresión Regular en Infix: " << linea << endl;
+        string postfix = infixToPostfix(linea);
+        cout << "Expresión Regular en Postfix: " << postfix << endl;
+        cout << "-------------------------" << endl;
+    }
+
+    archivo.close();
     return 0;
 }
