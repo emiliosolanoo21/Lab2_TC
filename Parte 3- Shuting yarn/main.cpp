@@ -1,38 +1,103 @@
 #include <fstream>
 #include <iostream>
 #include <stack>
+#include <map>
+#include <string>
 
 using namespace std;
 
-// Función para mostrar los elementos de la pila sin vaciarla
-void mostrarPila(const stack<char>& pila) {
-    // Creamos una pila auxiliar para almacenar temporalmente los elementos
-    stack<char> pilaAux = pila;
-    cout<< "Datos en la pila: [";
-    // Mostramos los elementos de la pila auxiliar
-    while (!pilaAux.empty()) {
-
-
-        cout << pilaAux.top();
-        pilaAux.pop();
-    }
-
-    cout<<"]"<< endl;
+// Función para determinar si un token es un operador
+bool isOperator(const char& token) {
+    static const string operators = "|?+*^";
+    return operators.find(token) != string::npos;
 }
 
-char contraParte(const char caracter){
-    switch (caracter) {
-        case '(':
-            return ')';
-            break;
-        case '[':
-            return ']';
-            break;
-        case '{':
-            return '}';
-        default:
-            return ' ';
+bool isBinary(const char& token) {
+    static const string operators = "^|";
+    return operators.find(token) != string::npos;
+}
+
+// Función para asignar prioridades a los operadores
+int precedence(const char& op) {
+    static const map<char, int> prec = {
+        {'(', 1}, {'|', 2}, {'.', 3}, {'?', 4}, {'*', 4}, {'+', 4}, {'^', 5}
+    };
+    return prec.at(op);
+}
+
+
+string formatRegEx(const string linea){
+
+    string resultado;
+
+    for (size_t i = 0; i < linea.length(); ++i) {
+        char c1 = linea[i];
+
+        if(i + 1 < linea.length()){
+            char c2 = linea[i+1];
+
+            resultado+=c1;
+
+            if(
+                c1 != '(' && c2 != ')' && !isOperator(c2) && !isBinary(c1)
+            ){
+
+                resultado+='.';
+            }
+        }
     }
+
+    resultado+=linea[linea.length()-1];
+
+    return resultado;
+}
+
+string infixToPostfix(string regex){
+    string postfix;
+
+    stack<char> pilaPostfix;
+
+    string formattedRegEx = formatRegEx(regex);
+
+    for (char caracter: formattedRegEx){
+        switch (caracter) {
+            case '(':
+                pilaPostfix.push(caracter);
+                break;
+            case ')':
+                while (pilaPostfix.top() != '(') {
+                    postfix+=pilaPostfix.top();
+                    pilaPostfix.pop();
+                }
+                pilaPostfix.pop();
+                break;
+            default:
+                while (pilaPostfix.size()>0) {
+                    char caracterTomado = pilaPostfix.top();
+                    int precedenciaCaracterTomado = precedence(caracterTomado);
+                    int precedenciaCaracterActual = precedence(caracter);
+
+
+                    if(precedenciaCaracterTomado >= precedenciaCaracterActual){
+                        postfix += pilaPostfix.top();
+                        pilaPostfix.pop();
+                    } else{
+                        break;
+                    }
+                }
+
+                pilaPostfix.push(caracter);
+                break;
+        }
+
+    }
+
+    while (!pilaPostfix.empty()) {
+        postfix+= pilaPostfix.top();
+        pilaPostfix.pop();
+    }
+
+    return postfix;
 }
 
 
@@ -41,6 +106,11 @@ int main() {
     ifstream archivo("../datos.txt");
     stack<char> pila_regex;
     bool test= true;
+
+
+
+
+
 
     if (archivo.is_open()) {
         string linea;
