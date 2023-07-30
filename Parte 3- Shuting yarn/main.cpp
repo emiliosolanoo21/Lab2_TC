@@ -7,10 +7,35 @@
 
 using namespace std;
 
+char contraParte(const char caracter){
+    switch (caracter) {
+        case '(':
+            return ')';
+            break;
+        case '[':
+            return ']';
+            break;
+        case '{':
+            return '}';
+        case ')':
+            return '(';
+            break;
+        case ']':
+            return '[';
+            break;
+        case '}':
+            return '{';
+        default:
+            return ' ';
+    }
+}
+
+
+
 // Función para determinar si un token es un operador
 bool isOperator(const char& token) {
 
-    static const string operators = "|?.+*^";
+    static const string operators = "|?,+*^";
     return operators.find(token) != string::npos;
 }
 
@@ -23,7 +48,7 @@ bool isBinary(const char& token) {
 // Función para asignar prioridades a los operadores
 int precedence(const char& op) {
     static const map<char, int> prec = {
-        {'(', 1}, {')', 1}, {'|', 2}, {'.', 3}, {'?', 4}, {'*', 4}, {'+', 4}, {'^', 5}, {'∗', 4}
+        {'(', 1}, {')', 1},{'[', 1}, {']', 1},{'{', 1}, {'}', 1}, {'|', 2}, {',', 3}, {'?', 4}, {'*', 4}, {'+', 4}, {'^', 5}, {'∗', 4}
     };
     auto it = prec.find(op);
     if (it != prec.end()) {
@@ -35,7 +60,7 @@ int precedence(const char& op) {
 // Formatear la expresión regular para incluir concatenaciones explícitas
 string formatRegEx(const string linea) {
     string resultado;
-    bool escaped = false;
+    bool completed= false;
     for (size_t i = 0; i < linea.length(); ++i) {
         char c1 = linea[i];
         if (i + 1 < linea.length()) {
@@ -43,16 +68,24 @@ string formatRegEx(const string linea) {
             resultado += c1;
 
             // Verificar si el caracter actual es '\' (carácter de escape)
-            if (c1 == '\\' && !escaped) {
+            if (c1 == '\\') {
                 resultado += c2; // Agregar el siguiente caracter sin formato
                 ++i; // Avanzar al siguiente caracter
-                escaped =true;
+                resultado += ',';
                 continue;
             }
 
-            if ((c1 != '(' && c2 != ')' && !isOperator(c2) && !isBinary(c1)) || escaped) {
-                resultado += '.';
-                escaped=false;
+            if(c1 == '['){
+                completed = true;
+            }
+
+
+
+            if ((c1 != '(' && c2 != ')' && !isOperator(c2) && !isBinary(c1)) && !completed) {
+                resultado += ',';
+            }
+            if(c2==']'){
+                completed =false;
             }
         }
     }
@@ -82,6 +115,7 @@ string infixToPostfix(string regex) {
     cout<<"Se convierte reformatea:"<<endl;
     string formattedRegEx = formatRegEx(regex);
     cout<<"Expresion infix: "<<formattedRegEx<<endl;
+    bool completed = false;
 
     for (char caracter : formattedRegEx) {
         cout<<"caracter Evaluado: "<<caracter<<endl;
@@ -89,14 +123,31 @@ string infixToPostfix(string regex) {
             case '\\':
                 escapeChar =true;
                 break;
+            case ' ':
+                escapeChar =true;
+                break;
+            case '[':
+                if(!escapeChar){
+                    completed =true;
+                    postfix+=caracter;
+                }
+            case '{':
             case '(':
                 if(!escapeChar){
                     pilaPostfix.push(caracter);
                     break;
                 }
-            case ')':
+            case ']':
                 if(!escapeChar){
-                    while (pilaPostfix.top() != '(') {
+                    completed =false;
+                    postfix+=caracter;
+                }
+            case '}':
+
+            case ')':
+
+                if(!escapeChar){
+                    while (pilaPostfix.top() != contraParte(caracter)) {
                         postfix += pilaPostfix.top();
                         pilaPostfix.pop();
                     }
@@ -105,7 +156,7 @@ string infixToPostfix(string regex) {
                 }
 
             default:
-                if((!isOperator(caracter) && !isBinary(caracter)) || escapeChar){
+                if((!isOperator(caracter) && !isBinary(caracter)) || escapeChar || completed){
                     escapeChar = false;
                     postfix+=caracter;
                 }else {
@@ -165,6 +216,56 @@ string replaceUnicodeCharacters(const string& input) {
     return output;
 }
 
+
+
+bool verify(string linea){
+    stack<char> pila_regex;
+    bool test= true;
+    cout<<">>Linea a evaluar: "<<linea<<endl;
+            for (char caracter : linea) {
+                if(caracter=='('|| caracter == '[' || caracter =='{'){
+                    pila_regex.push(caracter);
+                }else if (caracter==')'|| caracter == ']' || caracter =='}') {
+
+                    if(!pila_regex.empty()){
+                        if(contraParte(pila_regex.top())==caracter){
+                            pila_regex.pop();
+                        }else {
+                            test = false;
+                            break;
+                        }
+                    }else {
+                        test =false;
+                        break;
+                    }
+                }
+
+            }
+            if(!pila_regex.empty()){
+                 cout<<endl;
+                 cout<<"*****Lastima, la expresion no esta balanceada. Ya que la pila no esta vacia.****"<< endl;
+                 while (!pila_regex.empty()) {
+                     pila_regex.pop();
+                 }
+                 cout<<endl;
+                 return false;
+            } else if(!test){
+                cout<<endl;
+                 cout<<"*****Lastima, la expresion no esta balanceada.:(****"<< endl;
+                 while (!pila_regex.empty()) {
+                     pila_regex.pop();
+                 }
+                 cout<<endl;
+                 return false;
+            }else {
+                cout<<endl;
+                cout<<"////La linea esta correctamente balanceada///"<<endl;
+                cout<<endl;
+            }
+            return true;
+
+}
+
 int main() {
     ifstream archivo("../datos.txt");
     if (!archivo.is_open()) {
@@ -174,11 +275,14 @@ int main() {
 
     string linea;
     while (getline(archivo, linea)) {
-        linea = replaceUnicodeCharacters(linea);
-        cout << "Expresión Regular en Infix: " << linea << endl;
-        string postfix = infixToPostfix(linea);
-        cout << "Expresión Regular en Postfix: " << postfix << endl;
-        cout << "-------------------------" << endl;
+        if(verify(linea)){
+            linea = replaceUnicodeCharacters(linea);
+            cout << "Expresión Regular en Infix: " << linea << endl;
+            string postfix = infixToPostfix(linea);
+            cout << "Expresión Regular en Postfix: " << postfix << endl;
+            cout << "-------------------------" << endl;
+        }
+
     }
 
     archivo.close();
